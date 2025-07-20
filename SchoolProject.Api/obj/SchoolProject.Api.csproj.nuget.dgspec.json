@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Api\\SchoolProject.Api.csproj": {}
+    "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Api\\SchoolProject.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Api\\SchoolProject.Api.csproj": {
+    "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Api\\SchoolProject.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Api\\SchoolProject.Api.csproj",
+        "projectUniqueName": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Api\\SchoolProject.Api.csproj",
         "projectName": "SchoolProject.Api",
-        "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Api\\SchoolProject.Api.csproj",
+        "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Api\\SchoolProject.Api.csproj",
         "packagesPath": "C:\\Users\\mohamed\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Api\\obj\\",
+        "outputPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mohamed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Core\\SchoolProject.Core.csproj": {
-                "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Core\\SchoolProject.Core.csproj"
+              "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Core\\SchoolProject.Core.csproj": {
+                "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Core\\SchoolProject.Core.csproj"
               }
             }
           }
@@ -87,14 +87,14 @@
         }
       }
     },
-    "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Core\\SchoolProject.Core.csproj": {
+    "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Core\\SchoolProject.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Core\\SchoolProject.Core.csproj",
+        "projectUniqueName": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Core\\SchoolProject.Core.csproj",
         "projectName": "SchoolProject.Core",
-        "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Core\\SchoolProject.Core.csproj",
+        "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Core\\SchoolProject.Core.csproj",
         "packagesPath": "C:\\Users\\mohamed\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Core\\obj\\",
+        "outputPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mohamed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -111,14 +111,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Data\\SchoolProject.Data.csproj": {
-                "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Data\\SchoolProject.Data.csproj"
+              "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Data\\SchoolProject.Data.csproj": {
+                "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Data\\SchoolProject.Data.csproj"
               },
-              "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj"
+              "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj"
               },
-              "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Service\\SchoolProject.Service.csproj": {
-                "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Service\\SchoolProject.Service.csproj"
+              "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Service\\SchoolProject.Service.csproj": {
+                "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Service\\SchoolProject.Service.csproj"
               }
             }
           }
@@ -183,14 +183,14 @@
         }
       }
     },
-    "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Data\\SchoolProject.Data.csproj": {
+    "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Data\\SchoolProject.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Data\\SchoolProject.Data.csproj",
+        "projectUniqueName": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Data\\SchoolProject.Data.csproj",
         "projectName": "SchoolProject.Data",
-        "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Data\\SchoolProject.Data.csproj",
+        "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Data\\SchoolProject.Data.csproj",
         "packagesPath": "C:\\Users\\mohamed\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Data\\obj\\",
+        "outputPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mohamed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -223,6 +223,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.17, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -243,14 +249,14 @@
         }
       }
     },
-    "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj": {
+    "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj",
         "projectName": "SchoolProject.Infrastructure",
-        "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\mohamed\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mohamed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -267,8 +273,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Data\\SchoolProject.Data.csproj": {
-                "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Data\\SchoolProject.Data.csproj"
+              "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Data\\SchoolProject.Data.csproj": {
+                "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Data\\SchoolProject.Data.csproj"
               }
             }
           }
@@ -288,6 +294,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.17, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.17, )"
@@ -323,14 +333,14 @@
         }
       }
     },
-    "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Service\\SchoolProject.Service.csproj": {
+    "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Service\\SchoolProject.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Service\\SchoolProject.Service.csproj",
+        "projectUniqueName": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Service\\SchoolProject.Service.csproj",
         "projectName": "SchoolProject.Service",
-        "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Service\\SchoolProject.Service.csproj",
+        "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Service\\SchoolProject.Service.csproj",
         "packagesPath": "C:\\Users\\mohamed\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Service\\obj\\",
+        "outputPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mohamed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -347,11 +357,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Data\\SchoolProject.Data.csproj": {
-                "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Data\\SchoolProject.Data.csproj"
+              "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Data\\SchoolProject.Data.csproj": {
+                "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Data\\SchoolProject.Data.csproj"
               },
-              "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\Projects\\SchoolProjectCleanArchitecture\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj"
+              "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\mohamed\\OneDrive\\Desktop\\Things\\SchoolCleanArchitectureProject\\SchoolProject.Infrastructure\\SchoolProject.Infrastructure.csproj"
               }
             }
           }

@@ -17,7 +17,7 @@ namespace SchoolProject.Core.Mapping.Departments
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.DID))
                 .ForMember(dest => dest.ManagerName, opt => opt.MapFrom(src => src.Instructor.Localize(src.Instructor.ENameAr, src.Instructor.ENameEn)))
                 .ForMember(dest => dest.SubjectList, opt => opt.MapFrom(src => src.DepartmentSubjects))
-                .ForMember(dest => dest.InstructorList, opt => opt.MapFrom(src => src.Instructors))
+                .ForMember(dest => dest.InstructorList, opt => opt.MapFrom(src => src.Instructors));
             
 
             CreateMap<DepartmentSubject, SubjectResponse>()
