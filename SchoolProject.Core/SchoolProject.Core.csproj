@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Features\Department\Commands\" />
+    <Folder Include="Features\User\" />
     <Folder Include="Mapping\Departments\CommandMapping\" />
   </ItemGroup>
 
