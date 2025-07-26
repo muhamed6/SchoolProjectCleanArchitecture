@@ -14,6 +14,9 @@ namespace SchoolProject.Core.Mapping.ApplictionUser
             AddUserMapping();
             GetUserPaginationMapping();
             GetUserByIdMapping();
+           EditUserMapping();
+
+
         }
     }
 }
