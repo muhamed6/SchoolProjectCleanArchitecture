@@ -15,7 +15,8 @@ using System.Threading.Tasks;
 namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
 {
     public class UserCommandHandler : ResponseHandler,
-        IRequestHandler<AddUserCommand, Response<string>>
+        IRequestHandler<AddUserCommand, Response<string>>,
+        IRequestHandler<EditUserCommand, Response<string>>
     {
 
         #region Fields
@@ -60,6 +61,23 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
              return BadRequest<string>(createResult.Errors.FirstOrDefault().Description);
 
             return Created("");
+
+        }
+
+        public async Task<Response<string>> Handle(EditUserCommand request, CancellationToken cancellationToken)
+        {
+            var oldUser = await _userManager.FindByIdAsync(request.Id.ToString());
+            if(oldUser is null)
+                return NotFound<string>();
+
+            var newUser =  _mapper.Map(request,oldUser);
+
+            var result = await _userManager.UpdateAsync(newUser);
+
+            if(!result.Succeeded)
+                return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.UpdateFailed]);
+
+            return Success((string)_stringLocalizer[SharedResourcesKeys.Updated]);
 
         }
         #endregion
