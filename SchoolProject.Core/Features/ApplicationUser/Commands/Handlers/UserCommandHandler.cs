@@ -19,8 +19,10 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
 
         IRequestHandler<AddUserCommand, Response<string>>,
         IRequestHandler<EditUserCommand, Response<string>>,
+
         IRequestHandler<DeleteUserCommand, Response<string>>,
         IRequestHandler<ChangeUserPasswordCommand, Response<string>>
+
 
 
     {
@@ -50,10 +52,10 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
         public async Task<Response<string>> Handle(AddUserCommand request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
-            
-            if (user != null) 
-             return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.EmailIsExist]);
-            
+
+            if (user != null)
+                return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.EmailIsExist]);
+
             var userByUserName = await _userManager.FindByNameAsync(request.UserName);
 
             if (userByUserName != null)
@@ -63,8 +65,8 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
 
             var createResult = await _userManager.CreateAsync(identityUser, request.Password);
 
-            if(!createResult.Succeeded)
-             return BadRequest<string>(createResult.Errors.FirstOrDefault().Description);
+            if (!createResult.Succeeded)
+                return BadRequest<string>(createResult.Errors.FirstOrDefault().Description);
 
             return Created("");
 
@@ -74,10 +76,10 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
         public async Task<Response<string>> Handle(EditUserCommand request, CancellationToken cancellationToken)
         {
             var oldUser = await _userManager.FindByIdAsync(request.Id.ToString());
-            if(oldUser is null)
+            if (oldUser is null)
                 return NotFound<string>();
 
-            var newUser =  _mapper.Map(request,oldUser);
+            var newUser = _mapper.Map(request, oldUser);
 
             var userByUserName = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == request.UserName && x.Id != newUser.Id);
 
@@ -86,12 +88,30 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
 
             var result = await _userManager.UpdateAsync(newUser);
 
-            if(!result.Succeeded)
+            if (!result.Succeeded)
                 return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.UpdateFailed]);
 
             return Success((string)_stringLocalizer[SharedResourcesKeys.Updated]);
 
         }
+
+
+        public async Task<Response<string>> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+        {
+            var user = await _userManager.FindByIdAsync(request.Id.ToString());
+            if (user is null)
+                return NotFound<string>();
+
+            var result = await _userManager.DeleteAsync(user);
+
+            if (!result.Succeeded)
+                return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.DeletedFailed]);
+
+            return Success<string>(_stringLocalizer[SharedResourcesKeys.Deleted]);
+
+        }
+        #endregion
+
 
 
         public async Task<Response<string>> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
