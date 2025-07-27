@@ -120,6 +120,9 @@
   <data name="BadRequest" xml:space="preserve">
     <value>Request Can't be understand</value>
   </data>
+  <data name="ChangePassFailed" xml:space="preserve">
+    <value>فشلت عملية تغيير كلمة السر</value>
+  </data>
   <data name="Created" xml:space="preserve">
     <value>تم الاضافة بنجاح</value>
   </data>
@@ -177,11 +180,9 @@
   <data name="Updated" xml:space="preserve">
     <value>تم التعديل بنجاح</value>
   </data>
-
   <data name="UpdateFailed" xml:space="preserve">
     <value>فشل التعديل</value>
   </data>
-
   <data name="UserNameIsExist" xml:space="preserve">
     <value>اسم المستخدم الذي ادخلته موجود بالفعل</value>
   </data>

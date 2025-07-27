@@ -120,6 +120,9 @@
   <data name="BadRequest" xml:space="preserve">
     <value>Request Can't be understand</value>
   </data>
+  <data name="ChangePassFailed" xml:space="preserve">
+    <value>Change Password Failed</value>
+  </data>
   <data name="Created" xml:space="preserve">
     <value>Created Successfully</value>
   </data>
@@ -156,14 +159,14 @@
   <data name="NotFound" xml:space="preserve">
     <value>Object Is Not Found</value>
   </data>
+  <data name="PasswordNotEqualConfirmPass" xml:space="preserve">
+    <value>Password Not Equal Confirm Pass</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>This Field is Required</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>Password Not Equal Confirm Pass</value>
-  </data>
   <data name="Success" xml:space="preserve">
-    <value>Added Successfully</value>
+    <value>Done Successfully</value>
   </data>
   <data name="UnAuthorized" xml:space="preserve">
     <value>You Are Not Authorized To Access</value>
@@ -177,7 +180,6 @@
   <data name="UpdateFailed" xml:space="preserve">
     <value>Update Failed</value>
   </data>
-
   <data name="UserNameIsExist" xml:space="preserve">
     <value>UserName Is Exist</value>
   </data>
