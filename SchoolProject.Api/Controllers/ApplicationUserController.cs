@@ -35,6 +35,7 @@ namespace SchoolProject.Api.Controllers
             return NewResult(response);
         }
 
+
         [HttpPut(Router.ApplicationUserRouting.Edit)]
         public async Task<IActionResult> EditUser([FromBody] EditUserCommand command)
         {
@@ -48,6 +49,7 @@ namespace SchoolProject.Api.Controllers
             var response = await Mediator.Send(new DeleteUserCommand (id));
             return NewResult(response);
         }
+
 
     }
 }
