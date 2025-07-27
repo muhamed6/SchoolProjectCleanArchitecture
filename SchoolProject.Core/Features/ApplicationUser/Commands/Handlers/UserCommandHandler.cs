@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Bases;
 using SchoolProject.Core.Features.ApplicationUser.Commands.Models;
@@ -18,7 +19,8 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
 
         IRequestHandler<AddUserCommand, Response<string>>,
         IRequestHandler<EditUserCommand, Response<string>>,
-        IRequestHandler<DeleteUserCommand, Response<string>>
+        IRequestHandler<DeleteUserCommand, Response<string>>,
+        IRequestHandler<ChangeUserPasswordCommand, Response<string>>
 
 
     {
@@ -77,6 +79,11 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
 
             var newUser =  _mapper.Map(request,oldUser);
 
+            var userByUserName = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == request.UserName && x.Id != newUser.Id);
+
+            if(userByUserName != null)
+       return BadRequest<string>(_stringLocalizer[SharedResourcesKeys.UserNameIsExist]);
+
             var result = await _userManager.UpdateAsync(newUser);
 
             if(!result.Succeeded)
@@ -102,6 +109,19 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
 
         }
 
+        public async Task<Response<string>> Handle(ChangeUserPasswordCommand request, CancellationToken cancellationToken)
+        {
+            var user = await _userManager.FindByIdAsync(request.Id.ToString());
+            if (user is null)
+                return NotFound<string>();
 
+            var result = await _userManager.ChangePasswordAsync(user, request.CurrentPassword, request.NewPassword);
+            if(!result.Succeeded)
+                return BadRequest<string>(_stringLocalizer[result.Errors.FirstOrDefault().Description]);
+
+            return Success<string>(_stringLocalizer[SharedResourcesKeys.Success]);
+
+        }
+        #endregion
     }
 }

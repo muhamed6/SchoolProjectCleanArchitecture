@@ -23,7 +23,7 @@ namespace SchoolProject.Core.Behaviors
 
         
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
-        {
+         {
 
             if (_validators.Any())
             {
