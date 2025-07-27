@@ -20,6 +20,7 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
         IRequestHandler<EditUserCommand, Response<string>>,
         IRequestHandler<DeleteUserCommand, Response<string>>
 
+
     {
 
         #region Fields
@@ -85,6 +86,7 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
 
         }
 
+
         public async Task<Response<string>> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByIdAsync(request.Id.ToString());
@@ -99,7 +101,7 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Handlers
             return Success<string> (_stringLocalizer[SharedResourcesKeys.Deleted]);
 
         }
-        #endregion
+
 
     }
 }
