@@ -8,6 +8,7 @@ using SchoolProject.Core.Features.Students.Commands.Models;
 using SchoolProject.Core.Resources;
 using SchoolProject.Data.Entities;
 using SchoolProject.Data.Entities.Identity;
+using SchoolProject.Data.Helpers;
 using SchoolProject.Service.Abstracts;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,8 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Authentication.Commands.Handlers
 {
-    public class AuthenticationCommandHandler : ResponseHandler, IRequestHandler<SignInCommand, Response<string>>
+    public class AuthenticationCommandHandler : ResponseHandler,
+        IRequestHandler<SignInCommand, Response<JwtAuthResult>>
     {
 
         #region Fields
@@ -53,22 +55,22 @@ namespace SchoolProject.Core.Features.Authentication.Commands.Handlers
 
         #region Handle Functions
 
-        public async Task<Response<string>> Handle(SignInCommand request, CancellationToken cancellationToken)
+        public async Task<Response<JwtAuthResult>> Handle(SignInCommand request, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByNameAsync( request.UserName );
-            if ( user == null ) return BadRequest<string>(_localizer[SharedResourcesKeys.UserNameIsNotExist]);
+            if ( user == null ) return BadRequest<JwtAuthResult>(_localizer[SharedResourcesKeys.UserNameIsNotExist]);
 
 
             var signInResult = await _signManager.CheckPasswordSignInAsync(user, request.Password, false);
             if(! signInResult.Succeeded)
             {
-                return BadRequest<string>(_localizer[SharedResourcesKeys.PasswordNotCorrect]);
+                return BadRequest<JwtAuthResult>(_localizer[SharedResourcesKeys.PasswordNotCorrect]);
              
             }
 
-            var accessToken = await _authenticationService.GetJWTToken(user);
+            var result = await _authenticationService.GetJWTToken(user);
 
-            return Success(accessToken);
+            return Success(result);
         }
 
 
