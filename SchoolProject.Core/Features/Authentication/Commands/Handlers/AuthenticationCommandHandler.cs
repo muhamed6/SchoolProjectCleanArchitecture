@@ -78,13 +78,7 @@ namespace SchoolProject.Core.Features.Authentication.Commands.Handlers
 
             return Success(result);
 
-                return BadRequest<string>(_localizer[SharedResourcesKeys.PasswordNotCorrect]);
-             
-            }
-
-            var accessToken = await _authenticationService.GetJWTToken(user);
-
-            return Success(accessToken);
+            
 
         }
 
