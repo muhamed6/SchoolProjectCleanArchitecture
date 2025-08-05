@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlgorithmIsWrong" xml:space="preserve">
+    <value>خطا في الالجوريزم المستخدم</value>
+  </data>
   <data name="BadRequest" xml:space="preserve">
     <value>Request Can't be understand</value>
   </data>
@@ -168,6 +171,12 @@
   <data name="PasswordNotEqualConfirmPass" xml:space="preserve">
     <value>الباسورد والباسورد الموكد يجب ان يكونو متساويين</value>
   </data>
+  <data name="RefreshTokenIsExpired" xml:space="preserve">
+    <value>رمز الوصول الذي تستخدمه منتهي</value>
+  </data>
+  <data name="RefreshTokenIsNotFound" xml:space="preserve">
+    <value>رمز الوصول الذي تستخدمه ليس موجود</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>هذا الحقل مطلوب</value>
   </data>
@@ -176,6 +185,9 @@
   </data>
   <data name="TokenIsExpired" xml:space="preserve">
     <value>التوكن خلص</value>
+  </data>
+  <data name="TokenIsNotExpired" xml:space="preserve">
+    <value>رمز الوصول الذي تستخدمه غير منتهي</value>
   </data>
   <data name="UnAuthorized" xml:space="preserve">
     <value>لا تملك الصلاحية للوصول لتلك المصادر</value>

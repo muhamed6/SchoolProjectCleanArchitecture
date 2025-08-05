@@ -115,45 +115,10 @@ namespace SchoolProject.Service.Implementations
             return claims;
         }
 
-        public async Task<JwtAuthResult> GetRefreshToken(string accessToken, string refreshToken)
+        public async Task<JwtAuthResult> GetRefreshToken(User user, JwtSecurityToken jwtToken, DateTime? expiryDate, string refreshToken)
         {
-            var jwtToken = ReadJWTToken(accessToken);
-            if (jwtToken == null || !jwtToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256Signature))
-            {
-                throw new SecurityTokenException("Algorithm Is Wrong");
-            }
-
-            if (jwtToken.ValidTo > DateTime.UtcNow)
-            {
-                throw new SecurityTokenException("Token Is Not Expired");
-            }
-
-            //var userId = jwtToken.Claims.FirstOrDefault(x => x.Type == nameof(UserClaimModel.Id)).Value;
-
-            var userRefreshToken = await _refreshTokenRepository.GetTableNoTracking()
-                .FirstOrDefaultAsync(x => x.Token == accessToken && x.RefreshToken == refreshToken && x.UserId == 4);
-
-            if(userRefreshToken == null) 
-            {
-
-                throw new SecurityTokenException("Refresh Token Is  Expired");
-            }
-
-
-            if (userRefreshToken.ExpiryDate < DateTime.UtcNow)
-            {
-                userRefreshToken.IsRevoked = true;
-                userRefreshToken.IsUsed = false;
-                await _refreshTokenRepository.UpdateAsync(userRefreshToken);
-                throw new SecurityTokenException("Refresh Token Is  Expired");
-            }
-
-            var user = await _userManager.FindByIdAsync("4");
-
-            if(user == null) 
-            {
-                throw new SecurityTokenException("User Is Not Found!");
-            }
+            
+          
 
             var (jwtSecurityToken, newToken) = GenerateJWTToken(user);
            
@@ -164,12 +129,12 @@ namespace SchoolProject.Service.Implementations
             responseTokenResult.UserName = jwtToken.Claims
     .FirstOrDefault(x => x.Type == nameof(UserClaimModel.UserName))?.Value ?? string.Empty;
             responseTokenResult.TokenString = refreshToken;
-            responseTokenResult.ExpireAt = userRefreshToken.ExpiryDate;
+            responseTokenResult.ExpireAt = (DateTime) expiryDate;
             response.RefreshToken = responseTokenResult;
             return response;
         }
 
-        private JwtSecurityToken ReadJWTToken(string accessToken)
+        public JwtSecurityToken ReadJWTToken(string accessToken)
         {
             if (string.IsNullOrEmpty(accessToken))
             {
@@ -207,7 +172,7 @@ namespace SchoolProject.Service.Implementations
             {
                 if (validator is null)
                 {
-                    throw new SecurityTokenException("Invalid Token!");
+                   return "InvalidToken";
                 }
                 return "NotExpired";
             }
@@ -216,6 +181,41 @@ namespace SchoolProject.Service.Implementations
 
                 return ex.Message;
             }
+        }
+
+        public async Task<(string, DateTime?)> ValidateDetails(JwtSecurityToken jwtToken, string accessToken, string refreshToken)
+        {
+            if (jwtToken == null || !jwtToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256Signature))
+            {
+               return ("AlgorithmIsWrong", null);
+            }
+
+            if (jwtToken.ValidTo > DateTime.UtcNow)
+            {
+                return ("TokenIsNotExpired", null);
+            }
+
+            var userId = jwtToken.Claims.FirstOrDefault(x => x.Type == nameof(UserClaimModel.Id)).Value;
+
+            var userRefreshToken = await _refreshTokenRepository.GetTableNoTracking()
+                .FirstOrDefaultAsync(x => x.Token == accessToken && x.RefreshToken == refreshToken && x.UserId ==int.Parse(userId));
+
+            if(userRefreshToken == null) 
+            {
+              return ("RefreshTokenIsNotFound", null);
+            }
+
+            if (userRefreshToken.ExpiryDate < DateTime.UtcNow)
+            {
+                userRefreshToken.IsRevoked = true;
+                userRefreshToken.IsUsed = false;
+                await _refreshTokenRepository.UpdateAsync(userRefreshToken);
+                return ("RefreshTokenIsExpired", null);
+            }
+
+            var expiryDate = userRefreshToken.ExpiryDate;
+            return (userId, expiryDate);
+
         }
     }
 }
