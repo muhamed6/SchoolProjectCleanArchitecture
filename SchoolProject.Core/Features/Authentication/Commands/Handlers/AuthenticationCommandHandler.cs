@@ -21,7 +21,8 @@ using System.Threading.Tasks;
 namespace SchoolProject.Core.Features.Authentication.Commands.Handlers
 {
     public class AuthenticationCommandHandler : ResponseHandler,
-        IRequestHandler<SignInCommand, Response<JwtAuthResult>>
+        IRequestHandler<SignInCommand, Response<JwtAuthResult>>,
+        IRequestHandler<RefreshTokenCommand, Response<JwtAuthResult>>
 
     {
 
@@ -58,35 +59,35 @@ namespace SchoolProject.Core.Features.Authentication.Commands.Handlers
 
         #region Handle Functions
 
-
         public async Task<Response<JwtAuthResult>> Handle(SignInCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userManager.FindByNameAsync( request.UserName );
-            if ( user == null ) return BadRequest<JwtAuthResult>(_localizer[SharedResourcesKeys.UserNameIsNotExist]);
+            var user = await _userManager.FindByNameAsync(request.UserName);
+            if (user == null) return BadRequest<JwtAuthResult>(_localizer[SharedResourcesKeys.UserNameIsNotExist]);
 
 
 
             var signInResult = await _signManager.CheckPasswordSignInAsync(user, request.Password, false);
-            if(! signInResult.Succeeded)
+            if (!signInResult.Succeeded)
             {
 
                 return BadRequest<JwtAuthResult>(_localizer[SharedResourcesKeys.PasswordNotCorrect]);
-             
+
             }
 
             var result = await _authenticationService.GetJWTToken(user);
 
             return Success(result);
 
-                return BadRequest<string>(_localizer[SharedResourcesKeys.PasswordNotCorrect]);
-             
-            }
 
-            var accessToken = await _authenticationService.GetJWTToken(user);
-
-            return Success(accessToken);
 
         }
+
+        public async Task<Response<JwtAuthResult>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
+        {
+            var result = await _authenticationService.GetRefreshToken(request.AccessToken, request.RefreshToken);
+            return Success(result);
+        }
+
 
 
         #endregion
