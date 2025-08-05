@@ -186,6 +186,7 @@
   <data name="TokenIsExpired" xml:space="preserve">
     <value>التوكن خلص</value>
   </data>
+
   <data name="TokenIsNotExpired" xml:space="preserve">
     <value>رمز الوصول الذي تستخدمه غير منتهي</value>
   </data>
