@@ -43,7 +43,7 @@ namespace SchoolProject.Core.Features.Students.Commands.Validations
             RuleFor(x => x.NameAr)
                 .NotEmpty().WithMessage(_localizer[SharedResourcesKeys.NotEmpty])
                 .NotNull().WithMessage(_localizer[SharedResourcesKeys.Required])
-                .MaximumLength(10).WithMessage(_localizer[SharedResourcesKeys.MaxLengthis100]);
+                .MaximumLength(100).WithMessage(_localizer[SharedResourcesKeys.MaxLengthis100]);
 
             RuleFor(x => x.Address)
                 .NotEmpty().WithMessage(_localizer[SharedResourcesKeys.NotEmpty])
