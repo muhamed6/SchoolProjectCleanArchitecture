@@ -16,7 +16,7 @@ namespace SchoolProject.Data.Entities.Identity
             UserRefreshTokens = new HashSet<UserRefreshToken>();
         }
 
-        //public string FullName { get; set; }
+        public string FullName { get; set; } = null!;
         public string? Address { get; set; }
         public string? Country { get; set; }
 
