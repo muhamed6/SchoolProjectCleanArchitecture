@@ -45,7 +45,7 @@ namespace SchoolProject.Service.Implementations
         {
 
 
-            var (jwtToken, accessToken) = GenerateJWTToken(user);
+            var (jwtToken, accessToken) = await GenerateJWTToken(user);
             //var accessToken = new JwtSecurityTokenHandler().WriteToken(jwtToken);
 
             var refreshToken = GetRefreshToken(user.UserName);
@@ -70,9 +70,10 @@ namespace SchoolProject.Service.Implementations
 
         }
 
-        private (JwtSecurityToken, string) GenerateJWTToken(User user)
+        private async Task<(JwtSecurityToken, string)> GenerateJWTToken(User user)
         {
-            var claims = GetClaims(user);
+            var roles = await _userManager.GetRolesAsync(user);
+            var claims = GetClaims(user, roles.ToList());
             var jwtToken = new JwtSecurityToken(
                 _jwtSettings.Issuer,
                 _jwtSettings.Audience,
@@ -103,15 +104,21 @@ namespace SchoolProject.Service.Implementations
             return Convert.ToBase64String(randomNumber);
         }
 
-        private List<Claim> GetClaims(User user)
+        private List<Claim> GetClaims(User user, List<string> roles)
         {
             var claims = new List<Claim>()
             {
                 new Claim(nameof(UserClaimModel.Id), user.Id.ToString()),
-                new Claim(nameof(UserClaimModel.UserName), user.UserName),
-                new Claim(nameof(UserClaimModel.Email), user.Email),
                 new Claim(nameof(UserClaimModel.PhoneNumber), user.PhoneNumber),
+                new Claim(ClaimTypes.NameIdentifier, user.UserName),
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.Email, user.Email),
             };
+
+            foreach (var role in roles) 
+            {
+             claims.Add(new Claim(ClaimTypes.Role, role));
+            }
             return claims;
         }
 
@@ -120,7 +127,7 @@ namespace SchoolProject.Service.Implementations
             
           
 
-            var (jwtSecurityToken, newToken) = GenerateJWTToken(user);
+            var (jwtSecurityToken, newToken) = await GenerateJWTToken(user);
            
             var response = new JwtAuthResult();
 
