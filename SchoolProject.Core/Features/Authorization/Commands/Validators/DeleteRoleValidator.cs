@@ -11,8 +11,9 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.Features.Authorization.Commands.Validators
 {
-    public class AddRoleValidator : AbstractValidator<AddRoleCommand>
+    public class DeleteRoleValidator : AbstractValidator<DeleteRoleCommand>
     {
+
         #region Fields
 
         private readonly IStringLocalizer<SharedResources> _localizer;
@@ -22,7 +23,7 @@ namespace SchoolProject.Core.Features.Authorization.Commands.Validators
 
         #region Constructors
 
-        public AddRoleValidator( IStringLocalizer<SharedResources> localizer
+        public DeleteRoleValidator(IStringLocalizer<SharedResources> localizer
                                , IAuthorizationService authorizationService)
         {
             _localizer = localizer;
@@ -38,21 +39,20 @@ namespace SchoolProject.Core.Features.Authorization.Commands.Validators
         #region Actions
         public void ApplyValidationsRules()
         {
-            RuleFor(x => x.RoleName)
+            RuleFor(x => x.Id)
                 .NotEmpty().WithMessage(_localizer[SharedResourcesKeys.NotEmpty])
                 .NotNull().WithMessage(_localizer[SharedResourcesKeys.Required]);
-             
+
         }
 
         public void ApplyCustomValidationsRules()
         {
-            RuleFor(x => x.RoleName)
-                 .MustAsync(async (key, CancellationToken) => !await _authorizationService.IsRoleExistByName(key))
-             .WithMessage(_localizer[SharedResourcesKeys.IsExist]);
+            //RuleFor(x => x.Id)
+            //     .MustAsync(async (key, CancellationToken) => !await _authorizationService.IsRoleExistById(key))
+            // .WithMessage(_localizer[SharedResourcesKeys.RoleNotExist]);
 
         }
         #endregion
-
 
     }
 }
