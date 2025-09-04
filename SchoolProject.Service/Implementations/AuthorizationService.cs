@@ -74,7 +74,7 @@ namespace SchoolProject.Service.Implementations
         }
 
 
-        public async Task<ManageUserRolesResult> GetManageUserRolesData(User user)
+        public async Task<ManageUserRolesResult> ManageUserRolesData(User user)
         {
             var response = new ManageUserRolesResult();
             var rolesList = new List<UserRoles>();
