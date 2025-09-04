@@ -73,6 +73,7 @@ namespace SchoolProject.Service.Implementations
             return errors;
         }
 
+
         public async Task<ManageUserRolesResult> GetManageUserRolesData(User user)
         {
             var response = new ManageUserRolesResult();
@@ -100,6 +101,7 @@ namespace SchoolProject.Service.Implementations
             return response;
 
         }
+
 
         public async Task<Role> GetRoleById(int id)
         {

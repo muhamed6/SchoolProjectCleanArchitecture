@@ -20,5 +20,6 @@ namespace SchoolProject.Service.Abstracts
         public Task<ManageUserRolesResult> GetManageUserRolesData(User user);
 
 
+
     }
 }
