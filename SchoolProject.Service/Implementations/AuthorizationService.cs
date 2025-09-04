@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Dtos;
 using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Service.Abstracts;
@@ -70,6 +71,18 @@ namespace SchoolProject.Service.Implementations
             if (result.Succeeded) return "Success";
             var errors = string.Join("-", result.Errors);
             return errors;
+        }
+
+
+        public async Task<Role> GetRoleById(int id)
+        {
+            return await _roleManager.FindByIdAsync(id.ToString());
+        }
+
+        public async Task<List<Role>> GetRolesList()
+        {
+            return await _roleManager.Roles.ToListAsync();
+
         }
 
         public async Task<bool> IsRoleExistById(int roleId)
