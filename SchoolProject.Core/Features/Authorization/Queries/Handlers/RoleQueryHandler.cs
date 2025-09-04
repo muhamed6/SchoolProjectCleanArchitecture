@@ -1,64 +1,135 @@
-﻿using AutoMapper;
-using MediatR;
-using Microsoft.Extensions.Localization;
-using SchoolProject.Core.Bases;
-using SchoolProject.Core.Features.Authorization.Queries.Models;
-using SchoolProject.Core.Features.Authorization.Queries.Results;
-using SchoolProject.Core.Resources;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using SchoolProject.Data.Dtos;
+using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Service.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Azure.Core.HttpHeader;
 
-namespace SchoolProject.Core.Features.Authorization.Queries.Handlers
+namespace SchoolProject.Service.Implementations
 {
-    public class RoleQueryHandler : ResponseHandler,
-        IRequestHandler<GetRolesListQuery, Response<List<GetRolesListResult>>>,
-        IRequestHandler<GetRoleByIdQuery, Response<GetRoleByIdResult>>
+    public class AuthorizationService : IAuthorizationService 
     {
-
         #region Fields
-        private readonly IStringLocalizer<SharedResources> _stringLocalizer;
-        private readonly IAuthorizationService _authorizationService;
-        private readonly IMapper _mapper;
-
+        private readonly RoleManager<Role> _roleManager;
+        private readonly UserManager<User> _userManager;
         #endregion
-
         #region Constructors
-        public RoleQueryHandler(IStringLocalizer<SharedResources> stringLocalizer,
-                               IAuthorizationService authorizationService,
-                               IMapper mapper) : base(stringLocalizer)
+        public AuthorizationService(RoleManager<Role> roleManager, UserManager<User> userManager)
         {
-            _stringLocalizer = stringLocalizer;
-            _authorizationService = authorizationService;
-            _mapper = mapper;
+            _roleManager = roleManager;
+            _userManager = userManager;
         }
+
+
         #endregion
 
 
 
-        #region Handle Functions
+          #region Handle Functions
 
-        public async Task<Response<List<GetRolesListResult>>> Handle(GetRolesListQuery request, CancellationToken cancellationToken)
+        public async Task<string> AddRoleAsync(string roleName)
         {
-            var roles = await _authorizationService.GetRolesList();
-            var result = _mapper.Map<List<GetRolesListResult>>(roles);
-            return Success(result);
+            var identityRole = new Role();
+            identityRole.Name = roleName;
+            var result = await _roleManager.CreateAsync(identityRole);
+            if(result.Succeeded) 
+            {
+                return "Success";
+            }
+            return "Failed";
         }
 
-        public async Task<Response<GetRoleByIdResult>> Handle(GetRoleByIdQuery request, CancellationToken cancellationToken)
+        public async Task<string> DeleteRoleAsync(int roleId)
         {
-         var role = await _authorizationService.GetRoleById(request.Id);
-            if (role == null) return NotFound<GetRoleByIdResult>(_stringLocalizer[SharedResourcesKeys.RoleNotExist]);
-       
-         var result = _mapper.Map<GetRoleByIdResult>(role);
-            return Success(result);
-        
+          var role = await _roleManager.FindByIdAsync(roleId.ToString());
+            if (role == null) return "NotFound";
+
+            var users = await _userManager.GetUsersInRoleAsync(role.Name);
+
+            if (users != null || users.Count() > 0) return "Used";
+
+          var result = await _roleManager.DeleteAsync(role);
+            if (result.Succeeded) return "Success";
+
+            var errors = string.Join("-", result.Errors);
+            return errors;
         }
 
+        public async Task<string> EditRoleAsync(EditRoleRequest request)
+        {
+         var role = await _roleManager.FindByIdAsync(request.Id.ToString());
+            if (role == null)
+                return "notfound";
+
+            role.Name = request.Name;
+          var result = await _roleManager.UpdateAsync(role);
+            if (result.Succeeded) return "Success";
+            var errors = string.Join("-", result.Errors);
+            return errors;
+        }
+
+
+        public async Task<ManageUserRolesResult> GetManageUserRolesData(User user)
+        {
+            var response = new ManageUserRolesResult();
+            var rolesList = new List<UserRoles>();
+            var userRoles = await _userManager.GetRolesAsync(user);
+            var roles = await _roleManager.Roles.ToListAsync();
+
+            response.UserId = user.Id;
+            foreach (var role in roles)
+            {
+                var userRole = new UserRoles();
+                userRole.Id = role.Id;
+                userRole.Name = role.Name;
+                if (userRoles.Contains(role.Name))
+                {
+                    userRole.HasRole = true;
+                }
+                else 
+                {
+                 userRole.HasRole = false;
+                }
+                rolesList.Add(userRole);
+            }
+            response.UserRoles = rolesList;
+            return response;
+
+        }
+
+        public async Task<Role> GetRoleById(int id)
+        {
+            return await _roleManager.FindByIdAsync(id.ToString());
+        }
+
+        public async Task<List<Role>> GetRolesList()
+        {
+            return await _roleManager.Roles.ToListAsync();
+
+        }
+
+        public async Task<bool> IsRoleExistById(int roleId)
+        {
+            var role = await _roleManager.FindByIdAsync(roleId.ToString());
+            if(role == null) return false;
+            return true;
+        }
+
+        public async Task<bool> IsRoleExistByName(string roleName)
+        {
+            //    var role = await _roleManager.FindByIdAsync(roleName);
+            //    if (role == null) return false;
+
+            //    return true;
+
+            return await _roleManager.RoleExistsAsync(roleName);
+        }
         #endregion
-
     }
 }
+
