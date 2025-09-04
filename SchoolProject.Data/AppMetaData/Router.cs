@@ -67,6 +67,7 @@ namespace SchoolProject.Data.AppMetaData
             public const string Delete = Prefix + "/Role/Delete/{id}";
 
 
+
         }
     }
 }

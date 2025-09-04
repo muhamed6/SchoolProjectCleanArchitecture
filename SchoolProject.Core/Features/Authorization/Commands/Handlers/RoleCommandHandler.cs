@@ -18,6 +18,7 @@ namespace SchoolProject.Core.Features.Authorization.Commands.Handlers
         , IRequestHandler<EditRoleCommand, Response<string>>
         , IRequestHandler<DeleteRoleCommand, Response<string>>
 
+
     {
 
         #region Fields
@@ -74,5 +75,6 @@ namespace SchoolProject.Core.Features.Authorization.Commands.Handlers
             else return BadRequest<string>(result);
 
         }
+
     }
 }

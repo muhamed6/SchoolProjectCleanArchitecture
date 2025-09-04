@@ -31,5 +31,6 @@ namespace SchoolProject.Api.Controllers
             var result = await Mediator.Send(new DeleteRoleCommand(id));
             return NewResult(result);
         }
+
     }
 }
