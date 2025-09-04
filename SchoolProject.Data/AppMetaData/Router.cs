@@ -70,6 +70,7 @@ namespace SchoolProject.Data.AppMetaData
 
 
 
+
         }
     }
 }

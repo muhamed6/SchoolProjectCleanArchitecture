@@ -73,6 +73,7 @@ namespace SchoolProject.Service.Implementations
             return errors;
         }
 
+
         public async Task<Role> GetRoleById(int id)
         {
             return await _roleManager.FindByIdAsync(id.ToString());
