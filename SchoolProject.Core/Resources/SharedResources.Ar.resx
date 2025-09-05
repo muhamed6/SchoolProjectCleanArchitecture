@@ -219,4 +219,13 @@
   <data name="UserNameIsNotExist" xml:space="preserve">
     <value>اسم المستخدم غير موجود</value>
   </data>
+  <data name="FailedToRemoveOldRoles" xml:space="preserve">
+    <value>فشلت عملية حذف الصلاحيات القديمة</value>
+  </data>
+  <data name="FailedToUpdateUserRoles" xml:space="preserve">
+    <value>فشلت عملية تعديل الصلاحيات </value>
+  </data>
+  <data name="FailedToAddNewRoles" xml:space="preserve">
+    <value>فشلت عملية اضافة الصلاحيات </value>
+  </data>
 </root>
