@@ -2,27 +2,33 @@
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Dtos;
 using SchoolProject.Data.Entities.Identity;
+using SchoolProject.Infrastructure.Context;
 using SchoolProject.Service.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using static Azure.Core.HttpHeader;
 
 namespace SchoolProject.Service.Implementations
 {
-    public class AuthorizationService : IAuthorizationService 
+    public class AuthorizationService : IAuthorizationService
     {
         #region Fields
         private readonly RoleManager<Role> _roleManager;
         private readonly UserManager<User> _userManager;
+        private readonly ApplicationDBContext _dbContext;
         #endregion
         #region Constructors
-        public AuthorizationService(RoleManager<Role> roleManager, UserManager<User> userManager)
+        public AuthorizationService(RoleManager<Role> roleManager,
+                                    UserManager<User> userManager,
+                                    ApplicationDBContext dbContext)
         {
             _roleManager = roleManager;
             _userManager = userManager;
+            _dbContext = dbContext;
         }
 
 
@@ -30,14 +36,14 @@ namespace SchoolProject.Service.Implementations
 
 
 
-          #region Handle Functions
+        #region Handle Functions
 
         public async Task<string> AddRoleAsync(string roleName)
         {
             var identityRole = new Role();
             identityRole.Name = roleName;
             var result = await _roleManager.CreateAsync(identityRole);
-            if(result.Succeeded) 
+            if (result.Succeeded)
             {
                 return "Success";
             }
@@ -46,14 +52,14 @@ namespace SchoolProject.Service.Implementations
 
         public async Task<string> DeleteRoleAsync(int roleId)
         {
-          var role = await _roleManager.FindByIdAsync(roleId.ToString());
+            var role = await _roleManager.FindByIdAsync(roleId.ToString());
             if (role == null) return "NotFound";
 
             var users = await _userManager.GetUsersInRoleAsync(role.Name);
 
             if (users != null || users.Count() > 0) return "Used";
 
-          var result = await _roleManager.DeleteAsync(role);
+            var result = await _roleManager.DeleteAsync(role);
             if (result.Succeeded) return "Success";
 
             var errors = string.Join("-", result.Errors);
@@ -62,12 +68,12 @@ namespace SchoolProject.Service.Implementations
 
         public async Task<string> EditRoleAsync(EditRoleRequest request)
         {
-         var role = await _roleManager.FindByIdAsync(request.Id.ToString());
+            var role = await _roleManager.FindByIdAsync(request.Id.ToString());
             if (role == null)
                 return "notfound";
 
             role.Name = request.Name;
-          var result = await _roleManager.UpdateAsync(role);
+            var result = await _roleManager.UpdateAsync(role);
             if (result.Succeeded) return "Success";
             var errors = string.Join("-", result.Errors);
             return errors;
@@ -91,9 +97,9 @@ namespace SchoolProject.Service.Implementations
                 {
                     userRole.HasRole = true;
                 }
-                else 
+                else
                 {
-                 userRole.HasRole = false;
+                    userRole.HasRole = false;
                 }
                 rolesList.Add(userRole);
             }
@@ -117,7 +123,7 @@ namespace SchoolProject.Service.Implementations
         public async Task<bool> IsRoleExistById(int roleId)
         {
             var role = await _roleManager.FindByIdAsync(roleId.ToString());
-            if(role == null) return false;
+            if (role == null) return false;
             return true;
         }
 
@@ -130,7 +136,47 @@ namespace SchoolProject.Service.Implementations
 
             return await _roleManager.RoleExistsAsync(roleName);
         }
-        #endregion
+
+        public async Task<string> UpdateUserRoles(UpdateUserRolesRequest request)
+        {
+
+            var transaction = await _dbContext.Database.BeginTransactionAsync();
+            try
+            {
+
+
+                var user = await _userManager.FindByIdAsync(request.UserId.ToString());
+                if (user is null)
+                    return "UserIsNull";
+
+                var userRoles = await _userManager.GetRolesAsync(user);
+                var removeResult = await _userManager.RemoveFromRolesAsync(user, userRoles);
+                if (!removeResult.Succeeded)
+                {
+                    return "FaildToRemoveOldRoles";
+                }
+
+                var selectedRoles = request.UserRoles.Where(x => x.HasRole == true).Select(x => x.Name);
+                var addRolesResult = await _userManager.AddToRolesAsync(user, selectedRoles);
+
+                if (!addRolesResult.Succeeded)
+                {
+                    return "FaildToAddNewRoles";
+                }
+                await transaction.CommitAsync();
+
+
+
+
+                return "Success";
+            }
+            catch (Exception ex) 
+            {
+            await transaction.RollbackAsync();
+                return "FailedToUpdateUserRoles";
+            }
+            #endregion
+        }
     }
 }
 

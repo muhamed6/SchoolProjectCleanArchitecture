@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using SchoolProject.Core.Bases;
+using SchoolProject.Core.Features.Authorization.Commands.Models;
 using SchoolProject.Core.Features.Authorization.Queries.Models;
 using SchoolProject.Core.Features.Authorization.Queries.Results;
 using SchoolProject.Core.Resources;
@@ -59,6 +60,7 @@ namespace SchoolProject.Core.Features.Authorization.Quaries.Handlers
             var result = await _authorizationService.ManageUserRolesData(user);
             return Success(result);
         }
+
         #endregion
     }
 }

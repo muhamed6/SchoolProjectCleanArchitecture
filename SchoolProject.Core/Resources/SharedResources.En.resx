@@ -219,4 +219,13 @@
   <data name="UserNameIsNotExist" xml:space="preserve">
     <value>User Name Is Not Exist</value>
   </data>
+  <data name="FailedToRemoveOldRoles" xml:space="preserve">
+    <value>FailedToRemoveOldRoles</value>
+  </data>
+  <data name="FailedToUpdateUserRoles" xml:space="preserve">
+    <value>FailedToUpdateUserRoles</value>
+  </data>
+  <data name="FailedToAddNewRoles" xml:space="preserve">
+    <value>FailedToAddNewRoles</value>
+  </data>
 </root>
