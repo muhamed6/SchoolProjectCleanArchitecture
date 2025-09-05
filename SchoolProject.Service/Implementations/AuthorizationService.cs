@@ -14,7 +14,7 @@ using static Azure.Core.HttpHeader;
 
 namespace SchoolProject.Service.Implementations
 {
-    public class AuthorizationService : IAuthorizationService
+       public class AuthorizationService : IAuthorizationService
     {
         #region Fields
         private readonly RoleManager<Role> _roleManager;

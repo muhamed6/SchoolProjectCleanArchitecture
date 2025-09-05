@@ -60,6 +60,7 @@ namespace SchoolProject.Api.Controllers
             return NewResult(result);
         }
 
+
         [SwaggerOperation(Summary = " تعديل صلاحيات المستخدمين", OperationId = "UpdateUserRoles")]
         [HttpPut(Router.Authorization.UpdateUserRoles)]
         public async Task<IActionResult> UpdateUserRoles([FromBody] UpdateUserRolesCommand command)
