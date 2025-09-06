@@ -228,4 +228,16 @@
   <data name="FailedToAddNewRoles" xml:space="preserve">
     <value>FailedToAddNewRoles</value>
   </data>
+  <data name="FailedToUpdateUserClaims" xml:space="preserve">
+    <value>FailedToUpdateUserClaims</value>
+  </data>
+  <data name="FailedToAddNewClaims" xml:space="preserve">
+    <value>FailedToAddNewClaims</value>
+  </data>
+  <data name="FailedToRemoveOldClaims" xml:space="preserve">
+    <value>FailedToRemoveOldClaims</value>
+  </data>
+  <data name="UserIsNotFound" xml:space="preserve">
+    <value>UserIsNotFound</value>
+  </data>
 </root>
