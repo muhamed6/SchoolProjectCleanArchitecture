@@ -12,7 +12,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace SchoolProject.Api.Controllers
 {
     [ApiController]
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class AuthorizationController : AppControllerBase
     {
         [HttpPost(Router.Authorization.Create)]
@@ -69,6 +69,13 @@ namespace SchoolProject.Api.Controllers
             return NewResult(response);
         }
 
+        [SwaggerOperation(Summary = "ادارة صلاحيات الاستخدام", OperationId = "ManageUserClaims")]
+        [HttpGet(Router.Authorization.ManageUserClaims)]
+        public async Task<IActionResult> GetManageUserClaims([FromRoute] int userId)
+        {
+            var result = await Mediator.Send(new ManageUserClaimsQuery { UserId = userId });
+            return NewResult(result);
+        }
 
     }
 }
