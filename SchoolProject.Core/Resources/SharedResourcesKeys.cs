@@ -45,6 +45,7 @@ namespace SchoolProject.Core.Resources
         public const string RoleIsUsed = "RoleIsUsed";
         public const string UserIsNotFound = "UserIsNotFound";
         public const string FailedToRemoveOldRoles = "FailedToRemoveOldRoles";
+        public const string FailedToUpdateUserClaims = "FailedToUpdateUserClaims";
         public const string FailedToUpdateUserRoles = "FailedToUpdateUserRoles";
         public const string FailedToAddNewRoles = "FailedToAddNewRoles";
 

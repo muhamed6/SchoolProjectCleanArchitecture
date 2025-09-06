@@ -124,7 +124,7 @@
     <value>خطا في الالجوريزم المستخدم</value>
   </data>
   <data name="BadRequest" xml:space="preserve">
-    <value>Request Can't be understand</value>
+    <value>الطلب غير قابل للتنفيذ</value>
   </data>
   <data name="ChangePassFailed" xml:space="preserve">
     <value>فشلت عملية تغيير كلمة السر</value>
@@ -227,5 +227,17 @@
   </data>
   <data name="FailedToAddNewRoles" xml:space="preserve">
     <value>فشلت عملية اضافة الصلاحيات </value>
+  </data>
+  <data name="FailedToUpdateUserClaims" xml:space="preserve">
+    <value>فشلت عملية  تعديل صلاحيات الاستخدام للمستخدمين</value>
+  </data>
+  <data name="FailedToAddNewClaims" xml:space="preserve">
+    <value>فشلت عملية اضافة الصلاحيات للمستخدم</value>
+  </data>
+  <data name="FailedToRemoveOldClaims" xml:space="preserve">
+    <value>فشلت عملية  حذف صلاحيات الاستخدام للمستخدمين</value>
+  </data>
+  <data name="UserIsNotFound" xml:space="preserve">
+    <value>المستخدم غير موجود</value>
   </data>
 </root>

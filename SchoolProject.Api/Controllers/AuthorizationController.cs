@@ -77,5 +77,13 @@ namespace SchoolProject.Api.Controllers
             return NewResult(result);
         }
 
+
+        [SwaggerOperation(Summary = " تعديل صلاحيات الاستخدام للمستخدمين", OperationId = "UpdateUserClaims")]
+        [HttpPut(Router.Authorization.UpdateUserClaims)]
+        public async Task<IActionResult> UpdateUserClaims([FromBody] UpdateUserClaimsCommand command)
+        {
+            var response = await Mediator.Send(command);
+            return NewResult(response);
+        }
     }
 }

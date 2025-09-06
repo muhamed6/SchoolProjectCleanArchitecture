@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Dtos;
 using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Data.Helpers;
+using SchoolProject.Data.Requests;
 using SchoolProject.Data.Results;
 using SchoolProject.Infrastructure.Context;
 using SchoolProject.Service.Abstracts;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using static Azure.Core.HttpHeader;
@@ -208,7 +210,43 @@ namespace SchoolProject.Service.Implementations
 
         }
 
+        public async Task<string> UpdateUserClaims(UpdateUserClaimsRequest request)
+        {
+            var transaction = await _dbContext.Database.BeginTransactionAsync();
+            try
+            {
+                var user = await _userManager.FindByIdAsync(request.UserId.ToString());
+                if (user == null)
+                    return "UserIsNull";
 
+                var userClaims = await _userManager.GetClaimsAsync(user);
+                var removeClaimsResult = await _userManager.RemoveClaimsAsync(user, userClaims);
+
+
+                if (!removeClaimsResult.Succeeded)
+                    return "FaildToRemoveOldClaims";
+                
+                var claims = request.UserClaims.Where(x => x.Value == true).Select(x => new Claim(type: x.Type, value: x.Value.ToString()));
+
+                var addUserClaimResult = await _userManager.AddClaimsAsync(user, claims);
+                if(!addUserClaimResult.Succeeded)
+                    return "FaildToAddNewClaims";
+
+
+                await transaction.CommitAsync();
+
+                return "Success";
+
+            }
+            catch (Exception ex)
+            {
+
+                await transaction.RollbackAsync();
+                return "FailedToUpdateUserClaims";
+
+            }
+
+        }
         #endregion
 
     }
