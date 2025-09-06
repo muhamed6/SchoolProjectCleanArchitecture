@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Dtos;
 using SchoolProject.Data.Entities.Identity;
+using SchoolProject.Data.Helpers;
+using SchoolProject.Data.Results;
 using SchoolProject.Infrastructure.Context;
 using SchoolProject.Service.Abstracts;
 using System;
@@ -175,8 +177,40 @@ namespace SchoolProject.Service.Implementations
             await transaction.RollbackAsync();
                 return "FailedToUpdateUserRoles";
             }
-            #endregion
+
         }
+        public async Task<ManageUserClaimsResults> ManageUserClaimData(User user)
+        {
+            var response = new ManageUserClaimsResults();
+            var userClaimsList = new List<UserClaims>();
+            response.UserId = user.Id;
+
+            var userClaims = await _userManager.GetClaimsAsync(user);
+
+            foreach (var claim in ClaimsStore.Claims) 
+            {
+             var userClaim = new UserClaims();
+                userClaim.Type = claim.Type;
+
+                if(userClaims.Any(x => x.Type == claim.Type))
+                {
+                    userClaim.Value = true;
+                }
+                else
+                {
+                    userClaim.Value = false;
+                }
+                userClaimsList.Add(userClaim);
+
+            }
+            response.UserClaims = userClaimsList;
+            return response;
+
+        }
+
+
+        #endregion
+
     }
 }
 
