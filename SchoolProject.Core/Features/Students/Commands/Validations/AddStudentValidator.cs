@@ -65,16 +65,10 @@ namespace SchoolProject.Core.Features.Students.Commands.Validations
                 .MustAsync(async (key, CancellationToken) => !await _studentService.IsNameEnExist(key))
             .WithMessage(_localizer[SharedResourcesKeys.IsExist]);
 
-            //When(p => p.DepartmentId != null, () =>
-            //{
-            //    RuleFor(x => x.DepartmentId)
-            //        .MustAsync(async (key, CancellationToken) => !await _departmenttService.IsDepartmentIdExist(key)) //key da DepartmentId
-            //    .WithMessage(_localizer[SharedResourcesKeys.DepartmementIdIsNotExist]);
 
-            //});
 
             RuleFor(x => x.DepartmentId)
-                .MustAsync(async (key, CancellationToken) => !await _departmenttService.IsDepartmentIdExist(key.Value)) //key da DepartmentId
+                .MustAsync(async (key, CancellationToken) => await _departmenttService.IsDepartmentIdExist(key.Value)) 
             .WithMessage(_localizer[SharedResourcesKeys.IsNotExist]);
         }
         #endregion
