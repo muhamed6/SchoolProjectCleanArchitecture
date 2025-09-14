@@ -12,7 +12,7 @@ using Router = SchoolProject.Data.AppMetaData.Router;
 namespace SchoolProject.Api.Controllers
 {
     [ApiController]
-    [Authorize]
+    [Authorize (Roles ="Admin")]
     public class StudentController : AppControllerBase
     {
 
@@ -36,7 +36,7 @@ namespace SchoolProject.Api.Controllers
             var response = await Mediator.Send(new GetStudentByIDQuery(id));
             return NewResult(response);
         }
-
+        [Authorize(Policy = "CreateStudent")]
         [HttpPost(Router.StudentRouting.Create)]
         public async Task<IActionResult> Create(AddStudentCommand command)
         {
@@ -44,12 +44,14 @@ namespace SchoolProject.Api.Controllers
             return NewResult(response);
         }
 
+        [Authorize(Policy = "EditStudent")]
         [HttpPut(Router.StudentRouting.Edit)]
         public async Task<IActionResult> Edit(EditStudentCommand command)
         {
             var response = await Mediator.Send(command);
             return NewResult(response);
         }
+        [Authorize(Policy = "DeleteStudent")]
         [HttpDelete(Router.StudentRouting.Delete)]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {

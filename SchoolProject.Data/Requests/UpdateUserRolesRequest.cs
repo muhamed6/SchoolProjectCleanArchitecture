@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SchoolProject.Data.Dtos
+namespace SchoolProject.Data.Requests
 {
     public class UpdateUserRolesRequest : ManageUserRolesResult
     {
