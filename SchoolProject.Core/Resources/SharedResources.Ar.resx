@@ -240,4 +240,13 @@
   <data name="UserIsNotFound" xml:space="preserve">
     <value>المستخدم غير موجود</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>الاميل</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>الرسالة</value>
+  </data>
+  <data name="SendEmailFailed" xml:space="preserve">
+    <value>فشل ارسال الاميل</value>
+  </data>
 </root>

@@ -240,4 +240,13 @@
   <data name="UserIsNotFound" xml:space="preserve">
     <value>UserIsNotFound</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="SendEmailFailed" xml:space="preserve">
+    <value>Send Email Failed</value>
+  </data>
 </root>
