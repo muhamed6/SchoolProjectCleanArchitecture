@@ -12,9 +12,9 @@ namespace SchoolProject.Core.Features.ApplicationUser.Commands.Validators
 {
     public class AddUserValidators : AbstractValidator<AddUserCommand>
     {
-        private readonly IStringLocalizer<SharedResources> _localizer;
         #region Fields
 
+        private readonly IStringLocalizer<SharedResources> _localizer;
         #endregion
 
         #region Constructors
