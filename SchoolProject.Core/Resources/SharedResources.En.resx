@@ -220,22 +220,22 @@
     <value>User Name Is Not Exist</value>
   </data>
   <data name="FailedToRemoveOldRoles" xml:space="preserve">
-    <value>FailedToRemoveOldRoles</value>
+    <value>Failed To Remove Old Roles</value>
   </data>
   <data name="FailedToUpdateUserRoles" xml:space="preserve">
-    <value>FailedToUpdateUserRoles</value>
+    <value>Failed To Update User Roles</value>
   </data>
   <data name="FailedToAddNewRoles" xml:space="preserve">
-    <value>FailedToAddNewRoles</value>
+    <value>Failed To Add New Roles</value>
   </data>
   <data name="FailedToUpdateUserClaims" xml:space="preserve">
-    <value>FailedToUpdateUserClaims</value>
+    <value>Failed To Update User Claims</value>
   </data>
   <data name="FailedToAddNewClaims" xml:space="preserve">
-    <value>FailedToAddNewClaims</value>
+    <value>Failed To Add New Claims</value>
   </data>
   <data name="FailedToRemoveOldClaims" xml:space="preserve">
-    <value>FailedToRemoveOldClaims</value>
+    <value>Failed To Remove Old Claims</value>
   </data>
   <data name="UserIsNotFound" xml:space="preserve">
     <value>UserIsNotFound</value>
@@ -248,5 +248,17 @@
   </data>
   <data name="SendEmailFailed" xml:space="preserve">
     <value>Send Email Failed</value>
+  </data>
+  <data name="EmailNotConfirmed" xml:space="preserve">
+    <value>Email Not Confirmed</value>
+  </data>
+  <data name="TryToRegisterAgain" xml:space="preserve">
+    <value>Try To Register Again</value>
+  </data>
+  <data name="ErrorWhenConfirmEmail" xml:space="preserve">
+    <value>Error When Confirm Email</value>
+  </data>
+  <data name="ConfirmEmailDone" xml:space="preserve">
+    <value>Confirm Email Done</value>
   </data>
 </root>

@@ -56,6 +56,7 @@ namespace SchoolProject.Data.AppMetaData
             public const string SignIn = Prefix + "/SignIn";
             public const string RefreshToken = Prefix + "/Refresh-Token";
             public const string ValidateToken = Prefix + "/Validate-Token";
+            public const string ConfirmEmail ="/Api/Authentication/ConfirmEmail";
 
          
         } 

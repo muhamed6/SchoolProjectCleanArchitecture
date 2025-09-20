@@ -72,6 +72,10 @@ namespace SchoolProject.Core.Features.Authentication.Commands.Handlers
 
             }
 
+            if(!user.EmailConfirmed)
+                return BadRequest<JwtAuthResult>(_localizer[SharedResourcesKeys.EmailNotConfirmed]);
+
+
             var result = await _authenticationService.GetJWTToken(user);
 
             return Success(result);
