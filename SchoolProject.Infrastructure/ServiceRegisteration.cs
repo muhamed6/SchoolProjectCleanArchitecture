@@ -46,9 +46,15 @@ namespace SchoolProject.Infrastructure
 
             //JWT Authentication
             var jwtSettings = new JwtSettings();
+            var emailSettings = new EmailSettings();
+
             configuration.GetSection(nameof(jwtSettings)).Bind(jwtSettings);
 
+            configuration.GetSection(nameof(emailSettings)).Bind(emailSettings);
+
             services.AddSingleton(jwtSettings);
+
+            services.AddSingleton(emailSettings);
 
             services.AddAuthentication(x =>
             {
